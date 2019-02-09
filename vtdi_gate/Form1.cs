@@ -41,7 +41,9 @@ namespace vtdi_gate
 
         private void gateInOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Gate In/Out Clicked");
+            GateInOut gate = new GateInOut();  //Declaring an Object for login form
+            gate.MdiParent = this;             //Locking login form to parent form
+            gate.Show();                       //Showing login form
         }
 
         private void gateReportsToolStripMenuItem_Click(object sender, EventArgs e)
