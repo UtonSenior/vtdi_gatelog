@@ -46,10 +46,10 @@
             this.dtpTimeIn = new System.Windows.Forms.DateTimePicker();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dtbTimeOut = new System.Windows.Forms.DateTimePicker();
+            this.dtpTimeOut = new System.Windows.Forms.DateTimePicker();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.dtbDateIn = new System.Windows.Forms.DateTimePicker();
-            this.dtbDateOut = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateIn = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateOut = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -249,7 +249,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.dtpTimeIn);
-            this.flowLayoutPanel1.Controls.Add(this.dtbTimeOut);
+            this.flowLayoutPanel1.Controls.Add(this.dtpTimeOut);
             this.flowLayoutPanel1.Controls.Add(this.dateTimePicker2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(580, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -264,38 +264,38 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 3;
             // 
-            // dtbTimeOut
+            // dtpTimeOut
             // 
-            this.dtbTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtbTimeOut.Location = new System.Drawing.Point(102, 3);
-            this.dtbTimeOut.Name = "dtbTimeOut";
-            this.dtbTimeOut.Size = new System.Drawing.Size(93, 20);
-            this.dtbTimeOut.TabIndex = 4;
+            this.dtpTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpTimeOut.Location = new System.Drawing.Point(102, 3);
+            this.dtpTimeOut.Name = "dtpTimeOut";
+            this.dtpTimeOut.Size = new System.Drawing.Size(93, 20);
+            this.dtpTimeOut.TabIndex = 4;
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.dtbDateIn);
-            this.flowLayoutPanel2.Controls.Add(this.dtbDateOut);
+            this.flowLayoutPanel2.Controls.Add(this.dtpDateIn);
+            this.flowLayoutPanel2.Controls.Add(this.dtpDateOut);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(580, 39);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(200, 30);
             this.flowLayoutPanel2.TabIndex = 11;
             // 
-            // dtbDateIn
+            // dtpDateIn
             // 
-            this.dtbDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtbDateIn.Location = new System.Drawing.Point(3, 3);
-            this.dtbDateIn.Name = "dtbDateIn";
-            this.dtbDateIn.Size = new System.Drawing.Size(93, 20);
-            this.dtbDateIn.TabIndex = 0;
+            this.dtpDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateIn.Location = new System.Drawing.Point(3, 3);
+            this.dtpDateIn.Name = "dtpDateIn";
+            this.dtpDateIn.Size = new System.Drawing.Size(93, 20);
+            this.dtpDateIn.TabIndex = 0;
             // 
-            // dtbDateOut
+            // dtpDateOut
             // 
-            this.dtbDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtbDateOut.Location = new System.Drawing.Point(102, 3);
-            this.dtbDateOut.Name = "dtbDateOut";
-            this.dtbDateOut.Size = new System.Drawing.Size(93, 20);
-            this.dtbDateOut.TabIndex = 1;
+            this.dtpDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateOut.Location = new System.Drawing.Point(102, 3);
+            this.dtpDateOut.Name = "dtpDateOut";
+            this.dtpDateOut.Size = new System.Drawing.Size(93, 20);
+            this.dtpDateOut.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
@@ -449,11 +449,11 @@
         private System.Windows.Forms.TextBox tbPurpose;
         private System.Windows.Forms.DateTimePicker dtpTimeIn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.DateTimePicker dtbTimeOut;
+        private System.Windows.Forms.DateTimePicker dtpTimeOut;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.DateTimePicker dtbDateIn;
-        private System.Windows.Forms.DateTimePicker dtbDateOut;
+        private System.Windows.Forms.DateTimePicker dtpDateIn;
+        private System.Windows.Forms.DateTimePicker dtpDateOut;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Button btnUpdate;

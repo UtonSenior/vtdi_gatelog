@@ -25,7 +25,13 @@ namespace vtdi_gate
             String firstName = tbFirstName.Text;
             String lastName = tbLastName.Text;
             String vehicle = tbVechicleType.Text;
-            int plateNumber = Convert.ToInt16(tbPlateNumber.Text);
+            String plateNumber = tbPlateNumber.Text;
+            String purpose = tbPurpose.Text;
+            String declare = clbItemsToDeclare.SelectedItem.ToString();
+            String dateIn = dtpDateIn.Text;
+            String timeIn = dtpTimeIn.Text;
+
+            //
 
             if (String.IsNullOrEmpty(lastName))
             {
@@ -35,7 +41,14 @@ namespace vtdi_gate
             {
                 MessageBox.Show
                     (
-                        "FirstName: "
+                        $"FirstName: {firstName} \n" +
+                        $"LastName: {lastName} \n" +
+                        $"Vehicle: {vehicle} \n" +
+                        $"Plate Number: {plateNumber} \n" +
+                        $"Purpose of Visit: {purpose} \n" +
+                        $"Items to Declare: {declare} \n\n"+
+                        $"Date In: {dateIn} \n"+
+                        $"Time In: {timeIn} \n"
                     );
             }
         }
