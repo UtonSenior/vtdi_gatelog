@@ -12,6 +12,8 @@ namespace vtdi_gate
 {
     public partial class Form1 : Form
     {
+        public bool isLogIn = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -53,7 +55,26 @@ namespace vtdi_gate
 
         private void userLogsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("User Logs Clicked");
+            if (isLogIn)
+            {
+                MessageBox.Show("User Logs Clicked");
+            }
+            else
+            {
+                Showloginform();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void Showloginform() //Function to show form 
+        {
+            LogInForm logIn = new LogInForm();
+            logIn.MdiParent = this;
+            logIn.Show();
         }
     }
 }

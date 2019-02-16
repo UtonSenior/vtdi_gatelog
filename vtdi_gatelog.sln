@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vtdi_gate", "vtdi_gate\vtdi_gate.csproj", "{9DF48643-D88C-4349-B20A-694942D01917}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vtdi_gatelog", "vtdi_gate\vtdi_gatelog.csproj", "{9DF48643-D88C-4349-B20A-694942D01917}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

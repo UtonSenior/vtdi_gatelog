@@ -69,6 +69,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(215, 20);
             this.tbPassword.TabIndex = 3;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // btnLogIn
             // 
@@ -79,6 +80,7 @@
             this.btnLogIn.TabIndex = 4;
             this.btnLogIn.Text = "Log In";
             this.btnLogIn.UseVisualStyleBackColor = true;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // btnReset
             // 
@@ -104,6 +106,7 @@
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "LogInForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User Login";
             this.ResumeLayout(false);
             this.PerformLayout();
