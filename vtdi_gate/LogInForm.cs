@@ -22,6 +22,12 @@ namespace vtdi_gate
             String username = tbUserName.Text;
             String password = tbPassword.Text;
 
+            // vtdi_gatelog_dbEntities ctx = new vtdi_gatelog_dbEntities(); or
+
+            //Declaring an object of the database model
+            var ctx = new vtdi_gatelog_dbEntities();
+            var userCount = ctx.tblUsers.Count(q => q.Username == username && q.Password == password);
+
             //String.IsNullOrEmpty
             if (String.IsNullOrEmpty(username) && String.IsNullOrEmpty(password))
             {
@@ -29,7 +35,7 @@ namespace vtdi_gate
             }
             // You can use the String.Equals() function to compare
             // two tring values and see if they are eqaul.
-            else if (username == "uton" && String.Equals("12345",password))
+            else if (userCount == 1)
             {
                 MessageBox.Show($"Login was successfull for {username}");
                 //Declaring an object of type Form1

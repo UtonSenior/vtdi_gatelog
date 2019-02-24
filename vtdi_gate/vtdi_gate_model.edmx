@@ -15,17 +15,17 @@
           <Property Name="PlateNumber" Type="varchar" MaxLength="10" />
           <Property Name="DateTimeIn" Type="datetime" />
           <Property Name="DateTimeOut" Type="datetime" />
-          <Property Name="VehicleTypeId" Type="int" />
-          <Property Name="PurposeId" Type="int" />
-          <Property Name="ItemsToDeclareId" Type="int" />
-          <Property Name="UserId" Type="int" />
+          <Property Name="VehicleTypeId" Type="int" Nullable="false" />
+          <Property Name="PurposeId" Type="int" Nullable="false" />
+          <Property Name="ItemsToDeclareId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tblGenders">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varbinary" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblItemsToDeclare">
           <Key>
@@ -62,7 +62,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_tblGateInOut_ItemsToDeclare">
-          <End Role="tblItemsToDeclare" Type="Self.tblItemsToDeclare" Multiplicity="0..1" />
+          <End Role="tblItemsToDeclare" Type="Self.tblItemsToDeclare" Multiplicity="1" />
           <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblItemsToDeclare">
@@ -74,7 +74,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGateInOut_PurposeOfVisit">
-          <End Role="tblPurposeOfVisit" Type="Self.tblPurposeOfVisit" Multiplicity="0..1" />
+          <End Role="tblPurposeOfVisit" Type="Self.tblPurposeOfVisit" Multiplicity="1" />
           <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblPurposeOfVisit">
@@ -86,7 +86,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGateInOut_Users">
-          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
           <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblUsers">
@@ -98,7 +98,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGateInOut_VehicleType">
-          <End Role="tblVehicleTypes" Type="Self.tblVehicleTypes" Multiplicity="0..1" />
+          <End Role="tblVehicleTypes" Type="Self.tblVehicleTypes" Multiplicity="1" />
           <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVehicleTypes">
@@ -153,6 +153,34 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="vtdi_gatelog_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="vtdi_gatelog_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblGateInOuts" EntityType="vtdi_gatelog_dbModel.tblGateInOut" />
+          <EntitySet Name="tblGenders" EntityType="vtdi_gatelog_dbModel.tblGender" />
+          <EntitySet Name="tblItemsToDeclares" EntityType="vtdi_gatelog_dbModel.tblItemsToDeclare" />
+          <EntitySet Name="tblPurposeOfVisits" EntityType="vtdi_gatelog_dbModel.tblPurposeOfVisit" />
+          <EntitySet Name="tblUsers" EntityType="vtdi_gatelog_dbModel.tblUser" />
+          <EntitySet Name="tblVehicleTypes" EntityType="vtdi_gatelog_dbModel.tblVehicleType" />
+          <AssociationSet Name="FK_tblGateInOut_ItemsToDeclare" Association="vtdi_gatelog_dbModel.FK_tblGateInOut_ItemsToDeclare">
+            <End Role="tblItemsToDeclare" EntitySet="tblItemsToDeclares" />
+            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGateInOut_PurposeOfVisit" Association="vtdi_gatelog_dbModel.FK_tblGateInOut_PurposeOfVisit">
+            <End Role="tblPurposeOfVisit" EntitySet="tblPurposeOfVisits" />
+            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGateInOut_Users" Association="vtdi_gatelog_dbModel.FK_tblGateInOut_Users">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGateInOut_VehicleType" Association="vtdi_gatelog_dbModel.FK_tblGateInOut_VehicleType">
+            <End Role="tblVehicleType" EntitySet="tblVehicleTypes" />
+            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUsers_Genders" Association="vtdi_gatelog_dbModel.FK_tblUsers_Genders">
+            <End Role="tblGender" EntitySet="tblGenders" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="tblGateInOut">
           <Key>
             <PropertyRef Name="Id" />
@@ -163,22 +191,22 @@
           <Property Name="PlateNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DateTimeIn" Type="DateTime" Precision="3" />
           <Property Name="DateTimeOut" Type="DateTime" Precision="3" />
-          <Property Name="VehicleTypeId" Type="Int32" />
-          <Property Name="PurposeId" Type="Int32" />
-          <Property Name="ItemsToDeclareId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="tblItemsToDeclare" Relationship="Self.FK_tblGateInOut_ItemsToDeclare" FromRole="tblGateInOut" ToRole="tblItemsToDeclare" />
-          <NavigationProperty Name="tblPurposeOfVisit" Relationship="Self.FK_tblGateInOut_PurposeOfVisit" FromRole="tblGateInOut" ToRole="tblPurposeOfVisit" />
-          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblGateInOut_Users" FromRole="tblGateInOut" ToRole="tblUsers" />
-          <NavigationProperty Name="tblVehicleType" Relationship="Self.FK_tblGateInOut_VehicleType" FromRole="tblGateInOut" ToRole="tblVehicleTypes" />
+          <Property Name="VehicleTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PurposeId" Type="Int32" Nullable="false" />
+          <Property Name="ItemsToDeclareId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblItemsToDeclare" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_ItemsToDeclare" FromRole="tblGateInOut" ToRole="tblItemsToDeclare" />
+          <NavigationProperty Name="tblPurposeOfVisit" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_PurposeOfVisit" FromRole="tblGateInOut" ToRole="tblPurposeOfVisit" />
+          <NavigationProperty Name="tblUser" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_Users" FromRole="tblGateInOut" ToRole="tblUser" />
+          <NavigationProperty Name="tblVehicleType" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_VehicleType" FromRole="tblGateInOut" ToRole="tblVehicleType" />
         </EntityType>
         <EntityType Name="tblGender">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="Binary" MaxLength="50" FixedLength="false" />
-          <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUsers_Genders" FromRole="tblGenders" ToRole="tblUsers" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblUsers" Relationship="vtdi_gatelog_dbModel.FK_tblUsers_Genders" FromRole="tblGender" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblItemsToDeclare">
           <Key>
@@ -186,7 +214,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblGateInOuts" Relationship="Self.FK_tblGateInOut_ItemsToDeclare" FromRole="tblItemsToDeclare" ToRole="tblGateInOut" />
+          <NavigationProperty Name="tblGateInOuts" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_ItemsToDeclare" FromRole="tblItemsToDeclare" ToRole="tblGateInOut" />
         </EntityType>
         <EntityType Name="tblPurposeOfVisit">
           <Key>
@@ -194,22 +222,22 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblGateInOuts" Relationship="Self.FK_tblGateInOut_PurposeOfVisit" FromRole="tblPurposeOfVisit" ToRole="tblGateInOut" />
+          <NavigationProperty Name="tblGateInOuts" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_PurposeOfVisit" FromRole="tblPurposeOfVisit" ToRole="tblGateInOut" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="GenderId" Type="Int32" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="tblGateInOuts" Relationship="Self.FK_tblGateInOut_Users" FromRole="tblUsers" ToRole="tblGateInOut" />
-          <NavigationProperty Name="tblGender" Relationship="Self.FK_tblUsers_Genders" FromRole="tblUsers" ToRole="tblGenders" />
+          <NavigationProperty Name="tblGateInOuts" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_Users" FromRole="tblUser" ToRole="tblGateInOut" />
+          <NavigationProperty Name="tblGender" Relationship="vtdi_gatelog_dbModel.FK_tblUsers_Genders" FromRole="tblUser" ToRole="tblGender" />
         </EntityType>
         <EntityType Name="tblVehicleType">
           <Key>
@@ -217,11 +245,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblGateInOuts" Relationship="Self.FK_tblGateInOut_VehicleType" FromRole="tblVehicleTypes" ToRole="tblGateInOut" />
+          <NavigationProperty Name="tblGateInOuts" Relationship="vtdi_gatelog_dbModel.FK_tblGateInOut_VehicleType" FromRole="tblVehicleType" ToRole="tblGateInOut" />
         </EntityType>
         <Association Name="FK_tblGateInOut_ItemsToDeclare">
-          <End Role="tblItemsToDeclare" Type="Self.tblItemsToDeclare" Multiplicity="0..1" />
-          <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
+          <End Type="vtdi_gatelog_dbModel.tblItemsToDeclare" Role="tblItemsToDeclare" Multiplicity="1" />
+          <End Type="vtdi_gatelog_dbModel.tblGateInOut" Role="tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblItemsToDeclare">
               <PropertyRef Name="Id" />
@@ -232,8 +260,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGateInOut_PurposeOfVisit">
-          <End Role="tblPurposeOfVisit" Type="Self.tblPurposeOfVisit" Multiplicity="0..1" />
-          <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
+          <End Type="vtdi_gatelog_dbModel.tblPurposeOfVisit" Role="tblPurposeOfVisit" Multiplicity="1" />
+          <End Type="vtdi_gatelog_dbModel.tblGateInOut" Role="tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblPurposeOfVisit">
               <PropertyRef Name="Id" />
@@ -244,10 +272,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGateInOut_Users">
-          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
-          <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
+          <End Type="vtdi_gatelog_dbModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="vtdi_gatelog_dbModel.tblGateInOut" Role="tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblUsers">
+            <Principal Role="tblUser">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="tblGateInOut">
@@ -256,10 +284,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGateInOut_VehicleType">
-          <End Role="tblVehicleTypes" Type="Self.tblVehicleType" Multiplicity="0..1" />
-          <End Role="tblGateInOut" Type="Self.tblGateInOut" Multiplicity="*" />
+          <End Type="vtdi_gatelog_dbModel.tblVehicleType" Role="tblVehicleType" Multiplicity="1" />
+          <End Type="vtdi_gatelog_dbModel.tblGateInOut" Role="tblGateInOut" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblVehicleTypes">
+            <Principal Role="tblVehicleType">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="tblGateInOut">
@@ -268,45 +296,17 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblUsers_Genders">
-          <End Role="tblGenders" Type="Self.tblGender" Multiplicity="1" />
-          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
+          <End Type="vtdi_gatelog_dbModel.tblGender" Role="tblGender" Multiplicity="1" />
+          <End Type="vtdi_gatelog_dbModel.tblUser" Role="tblUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblGenders">
+            <Principal Role="tblGender">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="tblUsers">
+            <Dependent Role="tblUser">
               <PropertyRef Name="GenderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="vtdi_gatelog_dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblGateInOuts" EntityType="Self.tblGateInOut" />
-          <EntitySet Name="tblGenders" EntityType="Self.tblGender" />
-          <EntitySet Name="tblItemsToDeclares" EntityType="Self.tblItemsToDeclare" />
-          <EntitySet Name="tblPurposeOfVisits" EntityType="Self.tblPurposeOfVisit" />
-          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
-          <EntitySet Name="tblVehicleTypes" EntityType="Self.tblVehicleType" />
-          <AssociationSet Name="FK_tblGateInOut_ItemsToDeclare" Association="Self.FK_tblGateInOut_ItemsToDeclare">
-            <End Role="tblItemsToDeclare" EntitySet="tblItemsToDeclares" />
-            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblGateInOut_PurposeOfVisit" Association="Self.FK_tblGateInOut_PurposeOfVisit">
-            <End Role="tblPurposeOfVisit" EntitySet="tblPurposeOfVisits" />
-            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblGateInOut_Users" Association="Self.FK_tblGateInOut_Users">
-            <End Role="tblUsers" EntitySet="tblUsers" />
-            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblGateInOut_VehicleType" Association="Self.FK_tblGateInOut_VehicleType">
-            <End Role="tblVehicleTypes" EntitySet="tblVehicleTypes" />
-            <End Role="tblGateInOut" EntitySet="tblGateInOuts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblUsers_Genders" Association="Self.FK_tblUsers_Genders">
-            <End Role="tblGenders" EntitySet="tblGenders" />
-            <End Role="tblUsers" EntitySet="tblUsers" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -316,62 +316,62 @@
           <EntitySetMapping Name="tblGateInOuts">
             <EntityTypeMapping TypeName="vtdi_gatelog_dbModel.tblGateInOut">
               <MappingFragment StoreEntitySet="tblGateInOut">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
-                <ScalarProperty Name="DateTimeIn" ColumnName="DateTimeIn" />
-                <ScalarProperty Name="DateTimeOut" ColumnName="DateTimeOut" />
-                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
-                <ScalarProperty Name="PurposeId" ColumnName="PurposeId" />
-                <ScalarProperty Name="ItemsToDeclareId" ColumnName="ItemsToDeclareId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ItemsToDeclareId" ColumnName="ItemsToDeclareId" />
+                <ScalarProperty Name="PurposeId" ColumnName="PurposeId" />
+                <ScalarProperty Name="VehicleTypeId" ColumnName="VehicleTypeId" />
+                <ScalarProperty Name="DateTimeOut" ColumnName="DateTimeOut" />
+                <ScalarProperty Name="DateTimeIn" ColumnName="DateTimeIn" />
+                <ScalarProperty Name="PlateNumber" ColumnName="PlateNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblGenders">
             <EntityTypeMapping TypeName="vtdi_gatelog_dbModel.tblGender">
               <MappingFragment StoreEntitySet="tblGenders">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblItemsToDeclares">
             <EntityTypeMapping TypeName="vtdi_gatelog_dbModel.tblItemsToDeclare">
               <MappingFragment StoreEntitySet="tblItemsToDeclare">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblPurposeOfVisits">
             <EntityTypeMapping TypeName="vtdi_gatelog_dbModel.tblPurposeOfVisit">
               <MappingFragment StoreEntitySet="tblPurposeOfVisit">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="vtdi_gatelog_dbModel.tblUser">
               <MappingFragment StoreEntitySet="tblUsers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVehicleTypes">
             <EntityTypeMapping TypeName="vtdi_gatelog_dbModel.tblVehicleType">
               <MappingFragment StoreEntitySet="tblVehicleTypes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

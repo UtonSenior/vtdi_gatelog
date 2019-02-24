@@ -20,10 +20,10 @@ namespace vtdi_gate
         public string PlateNumber { get; set; }
         public Nullable<System.DateTime> DateTimeIn { get; set; }
         public Nullable<System.DateTime> DateTimeOut { get; set; }
-        public Nullable<int> VehicleTypeId { get; set; }
-        public Nullable<int> PurposeId { get; set; }
-        public Nullable<int> ItemsToDeclareId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int VehicleTypeId { get; set; }
+        public int PurposeId { get; set; }
+        public int ItemsToDeclareId { get; set; }
+        public int UserId { get; set; }
     
         public virtual tblItemsToDeclare tblItemsToDeclare { get; set; }
         public virtual tblPurposeOfVisit tblPurposeOfVisit { get; set; }
