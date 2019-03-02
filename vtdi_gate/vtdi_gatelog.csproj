@@ -108,6 +108,26 @@
     <Compile Include="tblVehicleType.cs">
       <DependentUpon>vtdi_gate_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="vtdi_gatelog_dbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>vtdi_gatelog_dbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="vtdi_gatelog_dbDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>vtdi_gatelog_dbDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="vtdi_gatelog_dbDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>vtdi_gatelog_dbDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="vtdi_gatelog_dbDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>vtdi_gatelog_dbDataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="vtdi_gate_model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,6 +176,50 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>vtdi_gate_model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="vtdi_gatelog_dbDataSet.xsc">
+      <DependentUpon>vtdi_gatelog_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>vtdi_gatelog_dbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet.xss">
+      <DependentUpon>vtdi_gatelog_dbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet1.xsc">
+      <DependentUpon>vtdi_gatelog_dbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>vtdi_gatelog_dbDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet1.xss">
+      <DependentUpon>vtdi_gatelog_dbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet2.xsc">
+      <DependentUpon>vtdi_gatelog_dbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>vtdi_gatelog_dbDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet2.xss">
+      <DependentUpon>vtdi_gatelog_dbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet3.xsc">
+      <DependentUpon>vtdi_gatelog_dbDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>vtdi_gatelog_dbDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="vtdi_gatelog_dbDataSet3.xss">
+      <DependentUpon>vtdi_gatelog_dbDataSet3.xsd</DependentUpon>
+    </None>
     <None Include="vtdi_gate_model.edmx.diagram">
       <DependentUpon>vtdi_gate_model.edmx</DependentUpon>
     </None>

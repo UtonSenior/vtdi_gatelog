@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace vtdi_gate
 {
     public partial class LogInForm : Form
-    {
+    {   
         public LogInForm()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace vtdi_gate
                 MessageBox.Show("You did not enter any values");
             }
             // You can use the String.Equals() function to compare
-            // two tring values and see if they are eqaul.
+            // two string values and see if they are eqaul.
             else if (userCount == 1)
             {
                 MessageBox.Show($"Login was successfull for {username}");

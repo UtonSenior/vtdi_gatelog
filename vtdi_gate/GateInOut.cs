@@ -12,6 +12,9 @@ namespace vtdi_gate
 {
     public partial class GateInOut : Form
     {
+        //Create an instance of the database
+        private vtdi_gatelog_dbEntities ctx = new vtdi_gatelog_dbEntities();
+
         public GateInOut()
         {
             InitializeComponent();
@@ -22,35 +25,46 @@ namespace vtdi_gate
             //DateTime.Now gets the current date time.
             var recordDate = DateTime.Now;
 
-            String firstName = tbFirstName.Text;
-            String lastName = tbLastName.Text;
-            String vehicle = tbVechicleType.Text;
-            String plateNumber = tbPlateNumber.Text;
-            String purpose = tbPurpose.Text;
-            String declare = clbItemsToDeclare.SelectedItem.ToString();
-            String dateIn = dtpDateIn.Text;
-            String timeIn = dtpTimeIn.Text;
+            var firstName = tbFirstName.Text;
+            var lastName = tbLastName.Text;
+            var plateNumber = tbPlateNumber.Text;
+            var vehicle = cbbVehicleType.SelectedValue;
+            var purpose = cbbPurpose.SelectedValue;
+            var declare = cbbDeclare.SelectedValue;
 
             //
 
-            if (String.IsNullOrEmpty(lastName))
+            if (String.IsNullOrEmpty(lastName) || String.IsNullOrEmpty(plateNumber))
             {
-                MessageBox.Show("Last Name is Required!");
+                MessageBox.Show("Last Name and Plate Number is Required!");
             }
             else
             {
-                MessageBox.Show
-                    (
-                        $"FirstName: {firstName} \n" +
-                        $"LastName: {lastName} \n" +
-                        $"Vehicle: {vehicle} \n" +
-                        $"Plate Number: {plateNumber} \n" +
-                        $"Purpose of Visit: {purpose} \n" +
-                        $"Items to Declare: {declare} \n\n"+
-                        $"Date In: {dateIn} \n"+
-                        $"Time In: {timeIn} \n"
-                    );
+                var getLogInfo = new tblGateInOut()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PlateNumber = plateNumber,
+                    VehicleTypeId = (int)vehicle,
+                    PurposeId = Convert.ToInt32(purpose),
+                    ItemsToDeclareId = (int)declare,
+                    DateTimeIn = recordDate,
+                    UserId = 1 //Task to Find a way to include the user id after login
+                };
+                ctx.tblGateInOuts.Add(getLogInfo);
+                ctx.SaveChanges();
             }
+        }
+
+        private void GateInOut_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'vtdi_gatelog_dbDataSet3.tblVehicleTypes' table. You can move, or remove it, as needed.
+            this.tblVehicleTypesTableAdapter.Fill(this.vtdi_gatelog_dbDataSet3.tblVehicleTypes);
+            // TODO: This line of code loads data into the 'vtdi_gatelog_dbDataSet2.tblItemsToDeclare' table. You can move, or remove it, as needed.
+            this.tblItemsToDeclareTableAdapter.Fill(this.vtdi_gatelog_dbDataSet2.tblItemsToDeclare);
+            // TODO: This line of code loads data into the 'vtdi_gatelog_dbDataSet1.tblPurposeOfVisit' table. You can move, or remove it, as needed.
+            this.tblPurposeOfVisitTableAdapter1.Fill(this.vtdi_gatelog_dbDataSet1.tblPurposeOfVisit);
+
         }
     }
 }
